@@ -16,5 +16,6 @@ cv2.waitKey(0)
 # 如果你寫 cv2.waitKey(1000) 就會等 1 秒。
 
 cv2.destroyAllWindows()
+# 關閉所有由 OpenCV 建立的視窗。
 
 
