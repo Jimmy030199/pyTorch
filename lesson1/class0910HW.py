@@ -6,11 +6,37 @@ import numpy as np
 import os
 
 import csv
-
+# 因為有 r，所以路徑裡的 \U、\t 不會被誤解成 Unicode 跳脫字元 或 tab，保證 Windows 路徑能正確使用。
 csv_file_path = r'C:\Users\User\Desktop\pyTorch\lesson1\taxi_fare_training.csv'
 
+# 它的全名是 "generate from text file"。
+# 功能
+# 可以直接讀取純文字數據檔案（通常是數字資料）。
+# 支援指定 分隔符號（例如逗號 ,、空格、tab）。
+# 可以選擇 跳過表頭行（例如 skip_header=1）。
+# 可以處理 缺失值（missing values），並用你指定的值填補。
+# 讀進來的資料會自動轉成 NumPy 陣列，方便後續做數學或機器學習處理
 data = np.genfromtxt(csv_file_path,delimiter=',',skip_header=1)
+
 print(data)
+
+# data[:, 0] 的意思
+# : → 代表「取所有列（rows）」
+# 0 → 代表「第 0 欄（column）」
+# data[:, 0] → 就是「取所有列的第 0 欄」
+
+# view(-1, 1) 的意思
+# 在 PyTorch 裡，tensor.view() 是用來 改變張量形狀 (reshape) 的方法。
+# -1：代表這個維度的大小由 PyTorch 自動推算（根據總元素數量除以其他維度大小來決定）。
+# 1：代表第二個維度固定為 1。
+# x = torch.tensor([1, 2, 3, 4, 5, 6]) 變成 
+# tensor([[1],
+#         [2],
+#         [3],
+#         [4],
+#         [5],
+#         [6]])
+
 x =torch.tensor(data[:,0],dtype=torch.float32).view(-1,1)
 y =torch.tensor(data[:,1],dtype=torch.float32).view(-1,1)
 
@@ -39,6 +65,7 @@ OUT_DIR ="HW_results"
 os.makedirs(OUT_DIR,exist_ok=True)
 
 plt.figure()
+# 折線圖本身
 plt.plot(range(len(loss_hist)),loss_hist,marker='o')
 plt.xlabel('Epoch')
 plt.ylabel('MSE Loss')
@@ -65,6 +92,7 @@ pred_csv_path =os.path.join(OUT_DIR,'predictions.csv')
 np.savetxt(pred_csv_path,arr,delimiter='-',comments='')
 
 idx =x.squeeze(1).argsort()
+print('idx',idx)
 x_sorted = x[idx]
 yhat_sorted =y_hat[idx]
 

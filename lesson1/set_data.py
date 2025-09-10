@@ -5,6 +5,10 @@ torch.manual_seed(0)
 n = 100
 x = torch.randn(n,1)
 # print('x',x)
+
+# print(torch.tensor(10.0))
+# print(torch.tensor([10.0]))
+
 w = torch.tensor([10.0])
 b = torch.tensor([3.0])
 
