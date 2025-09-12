@@ -13,11 +13,11 @@ class Model(nn.Module):
     def forward(self,x):
         return self.lin(x)
 model = Model(1,1)
-print(model)
+# print(model)
 
 x =torch.tensor([[1.0],[2.0],[3.0]])
 y = model(x)
-print(y)
+# print(y)
 
 
 

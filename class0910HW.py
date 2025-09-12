@@ -7,7 +7,7 @@ import os
 
 import csv
 # 因為有 r，所以路徑裡的 \U、\t 不會被誤解成 Unicode 跳脫字元 或 tab，保證 Windows 路徑能正確使用。
-csv_file_path = r'C:\Users\User\Desktop\pyTorch\lesson1\taxi_fare_training.csv'
+csv_file_path = r'C:\Users\User\Desktop\pyTorch\taxi_fare_training.csv'
 
 # 它的全名是 "generate from text file"。
 # 功能
