@@ -8,9 +8,13 @@ ROOT= "iris_course"
 ARTIFACTS = os.path.join(ROOT,'artifacts')
 os.makedirs(ARTIFACTS,exist_ok=True)
 
+# axis=0 與 axis=1 差別
+# print("axis=0：每欄平均", X.mean(axis=0))
+# print("axis=1：每列平均", X.mean(axis=1))
+
 def describe_stats(X:np.ndarray,names:List[str],title:str):
     m,s = X.mean(axis=0), X.std(axis=0)
-    print(f"/n[{title}]")
+    print(f"\n[{title}]")
     for n, mi, sd in zip(names, m,s):
         print(f"{n:<14s} mean={mi:8.4f} std={sd:8.4f}" )
 
