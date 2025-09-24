@@ -5,7 +5,7 @@ from typing  import List
 from sklearn.datasets import load_iris
 import matplotlib.pyplot as plt
 
-ROOT= "iris_course"
+ROOT= "W3/iris_course"
 ARTIFACTS = os.path.join(ROOT,'artifacts')
 os.makedirs(ARTIFACTS,exist_ok=True)
 
@@ -119,7 +119,7 @@ os.makedirs(MODELS,exist_ok=True)
 print('\====STEP 5 | 定義模型與參數量')
 
 class IrisMLP(nn.Module):
-    def __init__(self, in_dim=4, hidden1=64,hidden2=32,out_dim=3,dropout=0.2):
+    def __init__(self, in_dim=4, hidden1=64,hidden2=32,out_dim=3,dropout=0.5):
         super().__init__()
         self.net = nn.Sequential(
             nn.Linear(in_dim,hidden1),nn.ReLU(),nn.Dropout(dropout),
@@ -168,7 +168,7 @@ def evaluate(m, loader):
 best_state, best_val, patience, bad = None, -1.0, 15, 0
 hist = {"tr_loss": [], "tr_acc": [], "va_loss": [], "va_acc": []}
 
-for ep in range(1, 201):
+for ep in range(1, 2001):
     model.train()
     total, correct, loss_sum = 0, 0, 0.0
     for xb, yb in train_loader:
@@ -229,7 +229,7 @@ PLOTS = os.path.join(ROOT, "plots")
 os.makedirs(PLOTS, exist_ok=True)
 
 # 儲存圖表
-curve_path = os.path.join(PLOTS, "curves.png")
+curve_path = os.path.join(PLOTS, "curves2.png")
 plt.savefig(curve_path, dpi=150)
 plt.close()
 print(f"✅ 已存訓練曲線: {curve_path}")
@@ -277,7 +277,7 @@ plt.xlabel("Predicted")
 plt.ylabel("True")
 plt.tight_layout()
 
-cm_path = os.path.join(PLOTS, "confusion_matrix.png")
+cm_path = os.path.join(PLOTS, "confusion_matrix2.png")
 plt.savefig(cm_path, dpi=150)
 plt.close()
 print(f"->已存混淆矩陣: {cm_path}")
