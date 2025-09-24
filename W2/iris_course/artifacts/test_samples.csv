@@ -8,4 +8,4 @@ sepal_length,sepal_width,petal_length,petal_width,True,Pred
 4.6,3.6,1.0,0.19999999999999996,setosa,setosa
 5.4,3.4,1.6999999999999997,0.19999999999999996,setosa,setosa
 6.5,3.0,5.2,2.0,virginica,virginica
-5.4,3.0,4.5,1.5,versicolor,versicolor
+5.4,3.0,4.5,1.5,versicolor,virginica
