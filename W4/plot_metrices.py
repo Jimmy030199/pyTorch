@@ -11,7 +11,7 @@ import math
 from pathlib import Path
 import matplotlib.pyplot as plt
 
-# === 檔案路徑設定(這裡參數寫死) ===
+# === 檔案路徑設定(這裡參數寫死) === 
 CSV_PATH = Path("result/loss.csv")
 OUT_PATH = Path("result/metrics.png")
 

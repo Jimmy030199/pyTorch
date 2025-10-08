@@ -143,7 +143,7 @@ def main():
     # 訓練損失輸出 CSV 檔案
     loss_csv = os.path.join(args.out_dir, 'loss.csv')
     with open(loss_csv, 'w', encoding='utf-8') as f:
-        f.write('epoch,train_loss\n')
+        f.write("epoch,train_loss,val_loss,train_acc,val_acc\n")
     best_val_loss=float('inf')
     best_path=os.path.join(args.out_dir,'best_cnn.pth')
 
@@ -233,7 +233,8 @@ def main():
 
         # 記錄到 CSV
         with open(loss_csv, 'a', encoding='utf-8') as f:
-            f.write(f'{epoch},{train_loss:.6f}\n')
+            f.write(f"{epoch},{train_loss:.6f},{val_loss:.6f},{train_acc:.4f},{val_acc:.4f}\n")
+
 
         # 印出每個 epoch 結果
         dt = time.time() - t0
