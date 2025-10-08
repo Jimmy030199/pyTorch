@@ -146,7 +146,7 @@ def main():
         f.write('epoch,train_loss\n')
     best_val_loss=float('inf')
     best_path=os.path.join(args.out_dir,'best_cnn.pth')
-    
+
     train_acc = 0.0
     # 開始訓練
     for epoch in range(1, args.epochs + 1):
@@ -180,6 +180,10 @@ def main():
             # loss.item()：0.5678（純數字，可以加總統計）
             running_loss += loss.item() * bs
             n += bs
+
+            # ✅ 新增這行：計算訓練正確率
+            train_acc += (logits.argmax(1) == labels).float().sum().item()
+
         
         
         
