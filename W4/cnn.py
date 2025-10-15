@@ -55,6 +55,6 @@ class CNN(nn.Module):
 if __name__ == "__main__":
     # 快速檢測
     m = CNN()
-    x = torch.randn(8,1,28,28)
+    x = torch.randn(8,1,28,28) #產生一個 4 維張量 (tensor)
     y =m(x)
     print(y.shape)

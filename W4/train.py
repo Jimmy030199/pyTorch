@@ -138,7 +138,7 @@ def main():
     # 優化器 (Adam)
     optimizer = optim.Adam(model.parameters(), lr=args.lr)
 
-    print("[S5] Loss/Optimizer 準備完成")
+    print("Loss/Optimizer 準備完成")
 
     # 訓練損失輸出 CSV 檔案
     loss_csv = os.path.join(args.out_dir, 'loss.csv')
@@ -200,14 +200,15 @@ def main():
 
                 logits = model(images)
                 loss = criterion(logits, labels)
+                bs = labels.size(0)
 
                 # 計算 batch 的 loss 與正確率
-                val_loss += loss.item()
+                val_loss += loss.item()*bs
                 val_acc += (logits.argmax(1) == labels).float().sum().item()
-
+                m+=bs
         # 平均 loss、acc
-        val_loss /= len(val_loader)
-        val_acc /= len(val_loader.dataset)
+        val_loss /= m
+        val_acc /= m
 
         # 將結果寫入 csv 檔
         with open(loss_csv, 'a', encoding='utf-8') as f:
