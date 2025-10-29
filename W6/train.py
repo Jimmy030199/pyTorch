@@ -78,4 +78,37 @@ print(f"train batches = {len(train_loader)}")
 print(f"validation batches = {len(val_loader)}")
 print(f"test batches = {len(test_loader)}")
 
+# === 顯示圖片的函式 ===
+def imshow(img):
+    img = img / 2 + 0.5  # 反正規化 (把[-1,1]轉回[0,1])
+    npimg = img.numpy()
+    plt.imshow(np.transpose(npimg, (1, 2, 0)))
+    plt.axis('off')
+
+# === 取出一批訓練圖片 ===
+dataiter = iter(train_loader)
+images, labels = next(dataiter)
+classes = trainset.classes  # CIFAR-10 類別名稱
+
+# === 繪製前8張圖片 ===
+fig = plt.figure(figsize=(12, 6))
+plt.suptitle('CIFAR-10 Samples', fontsize=16, fontweight='bold')
+
+for idx in range(8):
+    ax = plt.subplot(2, 4, idx + 1)
+    img = images[idx] / 2 + 0.5  # 反正規化
+    npimg = img.numpy()
+    plt.imshow(np.transpose(npimg, (1, 2, 0)))
+    plt.title(f'class: {classes[labels[idx]]}')
+    plt.axis('off')
+
+plt.tight_layout()
+
+# === 儲存結果 ===
+os.makedirs('./outputs', exist_ok=True)
+plt.savefig('./outputs/cifar10_samples.png', dpi=150, bbox_inches='tight')
+print("✅ saved:", './outputs/cifar10_samples.png')
+
+
+
 
