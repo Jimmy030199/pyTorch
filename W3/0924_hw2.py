@@ -132,8 +132,8 @@ class IrisMLP(nn.Module):
 def count_trainable_params(model: nn.Module) -> int:
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
 
-# device =torch.device("cuda" if torch.cuda.is_available() else "cpu")
-device = torch.device("cpu")
+device =torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# device = torch.device("cpu")
 model = IrisMLP().to(device)
 print(model)
 print(f"可訓練參數量:{count_trainable_params(model):,}")
